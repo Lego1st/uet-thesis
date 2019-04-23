@@ -1,0 +1,72 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{indentfirst}
+%
+\title{Modeling Human Visual System in Patch-base Image Quality Assessment using Deep Learning}	%% title
+\author{Nguyen Trung Nghia}			%% author's name
+
+%
+\newcommand{\argmax}{\arg\!\max}
+
+\begin{document}
+%
+\maketitle
+
+%
+\chapter*{Authorship}
+“I hereby declare that the work contained in this thesis is of my own and has not been
+previously submitted for a degree or diploma at this or any other higher education
+institution. To the best of my knowledge and belief, the thesis contains no materials
+previously published or written by another person except where due reference or
+acknowledgement is made.”
+
+Signature: .................
+
+%
+\chapter*{Supervisor’s approval}
+
+“I hereby approve that the thesis in its current form is ready for committee examination
+as a requirement for the Bachelor of Computer Science degree at the University of
+Engineering and Technology.”
+\newline
+Signature: .................
+
+
+\chapter*{Acknowledgement}
+
+I am grateful to thank the Department of Computational Science and Engineering, and HMI Lab both at the VNU UET for the support.
+
+I would like to express our sincere thanks to our advisor Ph.D. Le Thanh Ha and M.Sc. Pham Thanh Tung for their support and guidance throughout this research work.
+%
+\chapter*{Abstract}
+
+As humans are the ultimate receivers of the majority of visual signals being processed, the most accurate way of assessing image quality is to ask humans for their opinions of an image’s quality, known as the subjective visual quality assessment (VQA). The subjective image quality scores gathered from all subjects are processed to be the mean opinion score (MOS), which is regarded as the ground truth of image quality. Conventionally, a number of full-reference image quality assessment (FR-IQA) methods adopted various computational models of the human visual system (HVS) from psychological vision science research.
+
+Due to the fact that the human visual system (HVS) is differently sensitive to features of image patch, we propose Deep Image Patch Quality Assessment (DIPQA), a novel image patch quality assessment that used deep neural network-based approach. An experimental quality assessment to approach database for image patch has been developed. The network is train end-to-end and comprises 8 convolutional layers and 4 pooling layers for feature extraction, and 2 fully connected layers for regression, which make it significantly deep enough to learn the mean opinion score (MOS) of the developed dataset.
+
+We promise that this project was contributed by all members in our group, which are supervised by Ph.D. Le Thanh Ha and M.Sc. Pham Thanh Tung from HMI Lab. The report contains no materials previously published or written by another person except where due reference or acknowledgement is made.
+%
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter*{Abbrevations}
+%
+\input{chapters/introduction}\newpage\cleardoublepage
+\input{chapters/background}\newpage\cleardoublepage
+\input{chapters/method}\newpage\cleardoublepage
+\input{chapters/evaluation}\newpage\cleardoublepage
+\input{chapters/conclusion}\newpage\cleardoublepage
+
+\nocite{*}
+\bibliography{references}\newpage\cleardoublepage
+\bibliographystyle{plain}
+\end{document}

@@ -1,0 +1,54 @@
+\chapter{Introduction}
+
+With an increase in the popularity of smartphones, compact cameras, and Internet services like Facebook and Instagram, past few years have seen tremendous growth in
+the production and sharing of digital images. 
+The journey of a picture begins with it being obtained by a camera, which changes over it into a digital format and compresses it utilizing lossy compression algorithms to meet the onboard storage accessibility. 
+This image is then transmitted over wired or wireless transmission channels and is altered in its resolution to meet the available bandwidth. 
+Finally, the end user receives this image and watches it over devices ranging from smartphones to 4K displays, which require further alterations to its resolution. 
+The end users tend to become more inclined towards the selection of a content provider, a service provider, and a display device that could better satisfy their expectations of image quality at delivery. 
+Thus it becomes crucial for all content providers, service providers, and display providers to optimize these respective technologies towards the provision of perceptually good results, and to do so, perceptual image quality needs to be estimated. 
+Furthermore, this estimation process should be automated, as much as possible, to make it independent from the availability of human observers in order to determine the perceptual quality.
+
+Image quality assessment (IQA) aims to measure the perceived visual signal quality according to its statistical characteristics and human perceptual mechanism, which iswidely required in numerous image processing applications. 
+IQA plays a vital role in guiding many visual processingalgorithms and systems, as well as their implementation, optimization and verification \cite{Lin2011,Wang2018,Wang2018a,Zhang2016}. 
+In particular, imagecompression is one of the most representative applications ofIQA, which can be utilized in the rate-distortion optimization process to obtain compressed images with better visualquality at the same bit-rate level \cite{Channappayya2008,Chen2010,Wang2012,Zhang2017,Zhang2017a,Ma2016}. 
+The traditionalimage compression methods mainly utilize the signal-fidelitybased quality metrics, which are less correlated with humanperceptual quality, e.g., MAE (mean absolute error), MSE(mean square error), SNR (signal-to-noise ratio), PSNR (peakSNR) and their relatives. 
+Although these metrics possess manyfavorable properties, e.g., clear physical meaning and highefficiency for calculation, they severely hinder the compression performance improvement in further reducing the visualredundancies in images due to their poor consistency withhuman visual perception.
+
+To obtain more consistent measures with human visual perception, many perceptual quality metrics have been proposedduring the recent years. 
+According to the availability of areference image, these methods can be divided into threecategories, i.e., full reference (FR) ones where the pristinereference image is available, reduced reference (RR) oneswhere partial information of the reference image is availableand no reference (NR) ones where the reference image isunavailable. 
+For image compression problem, the reference images are available at the encoder side such that the FR-IQAalgorithms are applicable.
+
+Many FR-IQA based algorithms have been proposed over time. One class of these
+algorithms including SSIM \cite{Wang2012}, FSIM \cite{Zhang2011}, RFSIM \cite{Zhang2010} use handcrafted features (attributes (edge, color, etc.) in data (images) that are relevant to themodeling problem) that supposedly captures relevant factors affecting image quality. 
+Although their performance is acceptable, there is still large room for improvement regarding the accuracy with which they reproduce human judgment of quality. 
+Another set of algorithms, including convolutional neural network(CNN) based approaches \cite{Bosse2018,Kang2015}, employ automatic learning of features from theraw image pixels, which are superior and more efficient as they make feature selection automatic and embedded within the system itself.
+
+\section{Motivation}
+
+Most of the existing IQAdatabases usually contain limited distortion levels (5-6 levels)
+covering the whole quality range from \enquote{Bad} to \enquote{Excellent},which make the images in adjacent distortion levels obviouslydifferent and easy to rank. 
+To describe the obvious and subtle quality differences between two images, Zhang \textit{et al} \cite{Zhang2019} usethe terms \enquote{coarse-grained} and \enquote{fine-grained}.
+More specifically, the images with \enquote{coarse-grained} quality differences correspond to the compressed ones generated using the same codec at obvious different bitrates, while the images with \enquote{fine-grained} quality difference correspond to the compressed ones generated usingdifferent optimization methods at the same bitrate. 
+Therefore, these databases with coarse-grained distortion variationsfor the same image may not be able to provide sufficientinformation to further improve the performance of IQA algorithms in evaluating fine-grained quality differences. 
+
+Another weakness for the existing IQA databases is thatthey only contain a few reference images with limited visual content. 
+To solve this problem patch-based methods are gradually used in IQA, e.g. CNN-IQA \cite{Kang2014}, CORNIA \cite{Ye2012}
+The patch-based learning methods requires the \enquote*{ground truth} of patch quality for trainingbut there are only the ground truth quality of images insteadof patches in IQA datasets.
+To deal with this problem, existing works usually assign the image quality score to all patchesin this image as their \enquote*{ground truth}, e.g. CNN-IQA \cite{Kang2014}. 
+This approach might introduce much noise in patches labels because in some distortion types the quality of patches in oneimage varies much and the patches quality score can’t besimply assigned as the image quality core. 
+
+Based on all these observations, this project promotes IQA in the new challenges of fine-grained quality assessment task by constructing a large-scale Image-Patch Quality Assessment database with fine-grained distortion differences. I also analyze 7 state-of-the-art IQA algorithms on the proposed database and show that there is still a large room to improve the IQA in the prediction of the fine-grained quality preference. Finally, I propose an FR Image-Patch model to help estimate the \enquote*{ground truth} quality of patches based on a state-of-the-art CNN architecture.   
+   
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{charts/writing-thesis.png}
+  \caption{Caption of this graph.}
+  \label{fig:writing-thesis}
+\end{figure}
+
+\section{Contributions}
+
+
+\section{Thesis Outline}
+
+Citing to the article \cite{Baroni1983} and citing to the graph above \ref{fig:writing-thesis}.

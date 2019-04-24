@@ -1,28 +1,64 @@
 \chapter{Evaluation}
-\begin{table}[ht]
-  \centering
-  \begin{tabular}{|l|cc|cc|}
-    \hline
-    \multirow{2}{*}{} & \multicolumn{2}{c|}{ HMII (64x64) }      & \multicolumn{2}{c|}{ HMII (128x128) }    \\ \cline{2-5} 
-    & PLCC           & SROCC           & PLCC           & SROCC           \\ \hline
-    SSIM\cite{Wang2004}             & \textbf{0.785} & 0.787          & \textbf{0.795} & 0.797          \\
-    RFSIM\cite{Zhang2010}             & 0.774          & 0.757          & 0.789          & 0.759          \\
-    FSIM\cite{Zhang2011}              & \textbf{0.794} & \textbf{0.799} & \textbf{0.824} & \textbf{0.815} \\
-    PSNR              & 0.200          & 0.737          & 0.194          & 0.752          \\
-    UQI               & 0.023          & 0.621     6     & 0.012          & 0.589          \\
-    VSI               & 0.765          & 0.765          & 0.768          & 0.786          \\
-    SRSIM             & 0.777          & \textbf{0.803} & 0.718          & \textbf{0.803} \\ \hline
-  \end{tabular}
-  \caption{Comparing different IQA algorithms}
-  \label{tab:algos}
-\end{table}
+
+\section{Evaluation Method} 
+
+ 
+\textbf{Dataset:} 
+This database comprises 1511 quality annotated images based on 1511 source reference image patches that are subject to different distortion levels of compression. 
+Differential mean opinion score (DMOS) for this dataset were computed for each pair, which is in the range 1 to 5.
+
+\textbf{Evaluation Metrics:}
+To evaluate the performances of the IQA algorithms, we used two standard measures, i.e., Spearman's rank order correlation coefficient (SRCC) and Pearson's linear correlation coefficient (PLCC).
+
+\textbf{Experiment Setup:}
+Both the experiments in this thesis are performed on HMII database.
+
+For the first experiment, the purpose is to evaluate how well an objective metric agrees with subjective preferences of subjects. We carefully select the Mathlab implementations of 7 algorithms to predict object scores for the entire database. 
+
+For the second one, different models are competed to find the best \enquote*{ground truth} predictor for patch quality. In this experiment, we use the following models to evaluate with our proposed DIPQA:
+
+\begin{itemize}
+\item \textit{Image-Patch model}: Zhang \textit{et al.}\cite{Zhang2019} assume the the curve model to predict image-patch quality is a cubic polynomial function:
+$$f(\Phi(\textbf{d});\theta) = a\Phi(\textbf{d})^{3} + b\Phi(\textbf{d})^{2} + c\Phi(\textbf{d}) + d$$
+where $\theta = {a, b, c, d}$ are the parameters for the non-linear function and $\Phi(\textbf{d})$ represents the feature of patch $\textbf{d}$. MSE and SSIM are chosen for the design of features. In our work, we tried top 3 FR-IQA methods from the first experiment: SSIM, FSIM and SRSIM.  
+
+\item \textit{DIQaM}: Bosse \textit{et al.}\cite{Bosse2018} present a Deep Neural Networks for No-Reference and Full-Reference Image Quality Assessment which obtains superior performance on different IQA benchmarks. We utilize the extractor architecture from this paper to train a Deep Neural Network on our database.
+\end{itemize}
+
+Results reported are based on the average performance of 10 folds cross-validation. Deep learning models converge after 50 epochs.   
+
+
+\section{Experiment results}
+
+\subsection{HMII Benchmark Analysis}
+
 
 \begin{table}[ht]
   \centering
   \begin{tabular}{|l|cc|cc|}
     \hline
+    \multirow{2}{*}{} & \multicolumn{2}{c|}{ HMII (64x64) }      & \multicolumn{2}{c|}{ HMII (128x128) }    \\ \cline{2-5} 
+    & PLCC           & SRCC           & PLCC           & SRCC           \\ \hline
+    SSIM\cite{Wang2004}             & \textbf{0.785} & 0.787          & \textbf{0.795} & 0.797          \\
+    RFSIM\cite{Zhang2010}             & 0.774          & 0.757          & 0.789          & 0.759          \\
+    FSIM\cite{Zhang2011}              & \textbf{0.794} & \textbf{0.799} & \textbf{0.824} & \textbf{0.815} \\
+    PSNR              & 0.200          & 0.737          & 0.194          & 0.752          \\
+    UQI\cite{Wang2002}               & 0.023          & 0.621          & 0.012          & 0.589          \\
+    VSI\cite{Zhang2014}               & 0.765          & 0.765          & 0.768          & 0.786          \\
+    SRSIM\cite{Zhang2012}             & 0.777          & \textbf{0.803} & 0.718          & \textbf{0.803} \\ \hline
+  \end{tabular}
+  \caption{Comparing different IQA algorithms}
+  \label{tab:algos}
+\end{table}
+
+\subsection{DIPQA Perfomrance Evaluation}
+% Second contribution
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|cc|cc|}
+    \hline
     \multirow{2}{*}{} & \multicolumn{2}{c|}{ HMII (64x64) } & \multicolumn{2}{c|}{ HMII (128x128) } \\ \cline{2-5} 
-    & PLCC              & SROCC            & PLCC               & SROCC             \\ \hline
+    & PLCC              & SRCC            & PLCC               & SRCC             \\ \hline
     IPM (SSIM)             & 0.836             & 0.784            & 0.843              & 0.794             \\
     IPM (FSIM)             & 0.848             & 0.795            & 0.871              & 0.810             \\
     IPM (SRSIM)            & 0.854             & 0.802            & 0.857              & 0.798             \\

@@ -1,2 +1,35 @@
 \chapter{Evaluation}
-In this chapter, ...
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|cc|cc|}
+    \hline
+    \multirow{2}{*}{} & \multicolumn{2}{c|}{ HMII (64x64) }      & \multicolumn{2}{c|}{ HMII (128x128) }    \\ \cline{2-5} 
+    & PLCC           & SROCC           & PLCC           & SROCC           \\ \hline
+    SSIM\cite{Wang2004}             & \textbf{0.785} & 0.787          & \textbf{0.795} & 0.797          \\
+    RFSIM\cite{Zhang2010}             & 0.774          & 0.757          & 0.789          & 0.759          \\
+    FSIM\cite{Zhang2011}              & \textbf{0.794} & \textbf{0.799} & \textbf{0.824} & \textbf{0.815} \\
+    PSNR              & 0.200          & 0.737          & 0.194          & 0.752          \\
+    UQI               & 0.023          & 0.621     6     & 0.012          & 0.589          \\
+    VSI               & 0.765          & 0.765          & 0.768          & 0.786          \\
+    SRSIM             & 0.777          & \textbf{0.803} & 0.718          & \textbf{0.803} \\ \hline
+  \end{tabular}
+  \caption{Comparing different IQA algorithms}
+  \label{tab:algos}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|cc|cc|}
+    \hline
+    \multirow{2}{*}{} & \multicolumn{2}{c|}{ HMII (64x64) } & \multicolumn{2}{c|}{ HMII (128x128) } \\ \cline{2-5} 
+    & PLCC              & SROCC            & PLCC               & SROCC             \\ \hline
+    IPM (SSIM)             & 0.836             & 0.784            & 0.843              & 0.794             \\
+    IPM (FSIM)             & 0.848             & 0.795            & 0.871              & 0.810             \\
+    IPM (SRSIM)            & 0.854             & 0.802            & 0.857              & 0.798             \\
+    DIQaM                  & 0.916             & 0.824            & 0.905              & 0.819             \\
+    DIPQA (VGG extractor)  & 0.802             & 0.754            & 0.830              & 0.760             \\
+    DIPQA (VGG finetuning) & \textbf{0.921}    & \textbf{0.848}   & \textbf{0.955}     & \textbf{0.871}    \\ \hline
+  \end{tabular}
+  \caption{Comparing different Full-Reference approaches}
+  \label{tab:approachs}
+\end{table}

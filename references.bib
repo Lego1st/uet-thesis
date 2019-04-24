@@ -29,6 +29,24 @@ keywords = {Image retargeting quality assessment,aspect ratio similarity},
 title = {{Aspect Ratio Similarity (ARS) for image retargeting quality assessment}},
 year = {2016}
 }
+@article{Zhang2014,
+abstract = {Perceptual image quality assessment (IQA) aims to use computational models to measure the image quality in consistent with subjective evaluations. Visual saliency (VS) has been widely studied by psychologists, neurobiologists, and computer scientists during the last decade to investigate, which areas of an image will attract the most attention of the human visual system. Intuitively, VS is closely related to IQA in that suprathreshold distortions can largely affect VS maps of images. With this consideration, we propose a simple but very effective full reference IQA method using VS. In our proposed IQA model, the role of VS is twofold. First, VS is used as a feature when computing the local quality map of the distorted image. Second, when pooling the quality score, VS is employed as a weighting function to reflect the importance of a local region. The proposed IQA index is called visual saliency-based index (VSI). Several prominent computational VS models have been investigated in the context of IQA and the best one is chosen for VSI. Extensive experiments performed on four large-scale benchmark databases demonstrate that the proposed IQA index VSI works better in terms of the prediction accuracy than all state-of-the-art IQA indices we can find while maintaining a moderate computational complexity. The MATLAB source code of VSI and the evaluation results are publicly available online at http://sse.tongji.edu.cn/linzhang/IQA/VSI/VSI.htm.},
+author = {Zhang, Lin and Shen, Ying and Li, Hongyu},
+doi = {10.1109/TIP.2014.2346028},
+issn = {10577149},
+journal = {IEEE Transactions on Image Processing},
+keywords = {Perceptual image quality assessment,visual saliency},
+title = {{VSI: A visual saliency-induced index for perceptual image quality assessment}},
+year = {2014}
+}
+@article{Bt2002,
+abstract = {Methodology for the subjective assessment of the quality of television pictures. Assessment methodology, environmental conditions etc.},
+author = {Bt, Itu-r and Itu-r, Question and Itu, The and Assembly, Radiocommunication},
+doi = {http://www.itu.int/rec/R-REC-BT.500/en},
+journal = {Methodology},
+title = {{RECOMMENDATION ITU-R BT . 500-11 Methodology for the subjective assessment of the quality of television pictures ANNEX 1 Description of assessment methods Common features}},
+year = {2002}
+}
 @article{Huynh-Thu2008,
 abstract = {Experimental data are presented that clearly demonstrate the scope of application of peak signal-to-noise ratio (PSNR) as a video quality metric. It is shown that as long as the video content and the codec type are not changed, PSNR is a valid quality measure. However, when the content is changed, correlation between subjective quality and PSNR is highly reduced. Hence PSNR cannot be a reliable method for assessing the video quality across different video contents},
 author = {Huynh-Thu, Q. and Ghanbari, M.},
@@ -46,6 +64,90 @@ journal = {IEEE Signal Processing Letters},
 keywords = {Image compression,just-noticeable difference (JND),quantization table,rate-distortion},
 title = {{Just-Noticeable Difference-Based Perceptual Optimization for JPEG Compression}},
 year = {2017}
+}
+@article{Kingma2015,
+abstract = {We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order mo-ments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpre-tations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical con-vergence properties of the algorithm and provide a regret bound on the conver-gence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the infinity norm.},
+archivePrefix = {arXiv},
+arxivId = {arXiv:1412.6980v9},
+author = {Kingma, Diederik P and Ba, Jimmy Lei},
+eprint = {arXiv:1412.6980v9},
+journal = {ICLR: International Conference on Learning Representations},
+title = {{Adam: A method for stochastic gradient descent}},
+year = {2015}
+}
+@article{Sutskever2014,
+abstract = {Deep neural nets with a large number of parameters are very powerful machine learning systems. However, overfitting is a serious problem in such networks. Large networks are also slow to use, making it difficult to deal with overfitting by combining the predictions of many different large neural nets at test time. Dropout is a technique for addressing this problem. The key idea is to randomly drop units (along with their connections) from the neural network during training. This prevents units from co-adapting too much. During training, dropout samples from an exponential number of different " thinned " networks. At test time, it is easy to approximate the effect of averaging the predictions of all these thinned networks by simply using a single unthinned network that has smaller weights. This significantly reduces overfitting and gives major improvements over other regularization methods. We show that dropout improves the performance of neural networks on supervised learning tasks in vision, speech recognition, document classification and computational biology, obtaining state-of-the-art results on many benchmark data sets.},
+author = {Sutskever, Ilya and Hinton, Geoffrey and Krizhevsky, Alex and Salakhutdinov, Ruslan R},
+journal = {Journal of Machine Learning Research},
+keywords = {deep learning,model combination,neural networks,regularization},
+title = {{Dropout : A Simple Way to Prevent Neural Networks from Overfitting}},
+year = {2014}
+}
+@inproceedings{Nair2010,
+abstract = {Restricted Boltzmann machines were developed using binary stochastic hidden units. These can be generalized by replacing each binary unit by an inﬁnite number of copies that all have the same weights but have progressively more negative biases. The learning and inference rules for these “Stepped Sigmoid Units” are unchanged. They can be approximated eﬃciently by noisy, rectiﬁed linear units. Compared with binary units, these units learn features that are better for object recognition on the NORB dataset and face veriﬁcation on the Labeled Faces in the Wild dataset. Unlike binary units, rectiﬁed linear units preserve information about relative intensities as information travels through multiple layers of feature detectors.},
+author = {Nair, Vinod and Hinton, Geoffrey},
+booktitle = {Proceedings of the 27th International Conference on Machine Learning},
+title = {{Rectified Linear Units Improve Restricted Boltzmann Machines}},
+year = {2010}
+}
+@article{Shelhamer2017,
+abstract = {Convolutional networks are powerful visual models that yield hierarchies of features. We show that convolutional networks by themselves, trained end-to-end, pixels-to-pixels, improve on the previous best result in semantic segmentation. Our key insight is to build "fully convolutional" networks that take input of arbitrary size and produce correspondingly-sized output with efficient inference and learning. We define and detail the space of fully convolutional networks, explain their application to spatially dense prediction tasks, and draw connections to prior models. We adapt contemporary classification networks (AlexNet, the VGG net, and GoogLeNet) into fully convolutional networks and transfer their learned representations by fine-tuning to the segmentation task. We then define a skip architecture that combines semantic information from a deep, coarse layer with appearance information from a shallow, fine layer to produce accurate and detailed segmentations. Our fully convolutional network achieves improved segmentation of PASCAL VOC (30{\%} relative improvement to 67.2{\%} mean IU on 2012), NYUDv2, SIFT Flow, and PASCAL-Context, while inference takes one tenth of a second for a typical image.},
+author = {Shelhamer, Evan and Long, Jonathan and Darrell, Trevor},
+doi = {10.1109/TPAMI.2016.2572683},
+issn = {01628828},
+journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+keywords = {Convolutional Networks,Deep Learning,Semantic Segmentation,Transfer Learning},
+title = {{Fully Convolutional Networks for Semantic Segmentation}},
+year = {2017}
+}
+@inproceedings{Girshick2015,
+abstract = {This paper proposes a Fast Region-based Convolutional Network method (Fast R-CNN) for object detection. Fast R-CNN builds on previous work to efficiently classify object proposals using deep convolutional networks. Compared to previous work, Fast R-CNN employs several innovations to improve training and testing speed while also increasing detection accuracy. Fast R-CNN trains the very deep VGG16 network 9x faster than R-CNN, is 213x faster at test-time, and achieves a higher mAP on PASCAL VOC 2012. Compared to SPPnet, Fast R-CNN trains VGG16 3x faster, tests 10x faster, and is more accurate. Fast R-CNN is implemented in Python and C++ (using Caffe) and is available under the open-source MIT License at https://github.com/rbgirshick/fast-rcnn.},
+author = {Girshick, Ross},
+booktitle = {Proceedings of the IEEE International Conference on Computer Vision},
+doi = {10.1109/ICCV.2015.169},
+isbn = {9781467383912},
+issn = {15505499},
+title = {{Fast R-CNN}},
+year = {2015}
+}
+@article{Wang2002,
+abstract = {We propose a new universal objective image quality index, which is easy to calculate and applicable to various image processing applications. Instead of using traditional error summation methods, the proposed index is designed by modeling any image distortion as a combination of three factors: loss of correlation, luminance distortion, and contrast distortion. Although the new index is mathematically defined and no human visual system model is explicitly employed, our experiments on various image distortion types indicate that it performs significantly better than the widely used distortion metric mean squared error. Demonstrative images and an efficient MATLAB implementation of the algorithm are available online at http://anchovy.ece.utexas.edu//spl sim/zwang/research/quality{\_}index/demo.html.},
+author = {Wang, Zhou and Bovik, Alan C.},
+doi = {10.1109/97.995823},
+issn = {10709908},
+journal = {IEEE Signal Processing Letters},
+keywords = {Human visual system (HVS),Image quality measurement,Mean squared error (MSE)},
+title = {{A universal image quality index}},
+year = {2002}
+}
+@inproceedings{Zhang2012,
+abstract = {Automatic image quality assessment (IQA) attempts to use computational models to measure the image quality in consistency with subjective ratings. In the past decades, dozens of IQA models have been proposed. Though some of them can predict subjective image quality accurately, their computational costs are usually very high. To meet real-time requirements, in this paper, we propose a novel fast and effective IQA index, namely spectral residual based similarity (SR-SIM), based on a specific visual saliency model, spectral residual visual saliency. SR-SIM is designed based on the hypothesis that an image's visual saliency map is closely related to its perceived quality. Extensive experiments conducted on three large-scale IQA datasets indicate that SR-SIM could achieve better prediction performance than the other state-of-the-art IQA indices evaluated. Moreover, SR-SIM can have a quite low computational complexity. The Matlab source code of SR-SIM and the evaluation results are available online at http://sse.tongji.edu.cn/linzhang/IQA/SR-SIM/SR-SIM.htm.},
+author = {Zhang, Lin and Li, Hongyu},
+booktitle = {Proceedings - International Conference on Image Processing, ICIP},
+doi = {10.1109/ICIP.2012.6467149},
+isbn = {9781467325332},
+issn = {15224880},
+keywords = {IQA,spectral residual,visual saliency},
+title = {{SR-SIM: A fast and high performance IQA index based on spectral residual}},
+year = {2012}
+}
+@inproceedings{Chopra2005,
+abstract = {We present a method for training a similarity metric from data. The method can be used for recognition or verification applications where the number of categories is very large and not known during training, and where the number of training samples for a single category is very small. The idea is to learn a function that maps input patterns into a target space such that the},
+author = {Chopra, Sumit and Hadsell, Raia and LeCun, Yann},
+booktitle = {Proceedings - 2005 IEEE Computer Society Conference on Computer Vision and Pattern Recognition, CVPR 2005},
+doi = {10.1109/CVPR.2005.202},
+isbn = {0769523722},
+title = {{Learning a similarity metric discriminatively, with application to face verification}},
+year = {2005}
+}
+@article{BROMLEY2004,
+abstract = {This paper describes an algorithm for verification of signatures written on a pen-input tablet. The algorithm is based on a novel, artificial neural network, called a "Siamese" neural network. This network consists of two identical sub-networks joined at their out-puts. During training the two sub-networks extract features from two signatures, while the joining neuron measures the distance be-tween the two feature vectors. Verification consists of comparing an extracted feature vector {\~{}}ith a stored feature vector for the signer. Signatures closer to this stored representation than a chosen thresh-old are accepted, all other signatures are rejected as forgeries.},
+author = {BROMLEY, JANE and BENTZ, JAMES W. and BOTTOU, L{\'{E}}ON and GUYON, ISABELLE and LECUN, YANN and MOORE, CLIFF and S{\"{A}}CKINGER, EDUARD and SHAH, ROOPAK},
+doi = {10.1142/s0218001493000339},
+issn = {0218-0014},
+journal = {International Journal of Pattern Recognition and Artificial Intelligence},
+title = {{SIGNATURE VERIFICATION USING A “SIAMESE” TIME DELAY NEURAL NETWORK}},
+year = {2004}
 }
 @inproceedings{Ye2012,
 abstract = {In this paper, we present an efficient general-purpose objective $\backslash$nno-reference (NR) image quality assessment (IQA) framework based on unsupervised $\backslash$nfeature learning. The goal is to build a computational model to automatically $\backslash$npredict human perceived image quality without a reference image and without $\backslash$nknowing the distortion present in the image. Previous approaches for this $\backslash$nproblem typically rely on hand-crafted features which are carefully designed $\backslash$nbased on prior knowledge. In contrast, we use raw-image-patches extracted from a $\backslash$nset of unlabeled images to learn a dictionary in an unsupervised manner. We use $\backslash$nsoft-assignment coding with max pooling to obtain effective image $\backslash$nrepresentations for quality estimation. The proposed algorithm is very $\backslash$ncomputationally appealing, using raw image patches as local descriptors and $\backslash$nusing soft-assignment for encoding. Furthermore, unlike previous methods, our $\backslash$nunsupervised feature learning strategy enables our method to adapt to different $\backslash$ndomains. CORNIA (Codebook Representation for No-Reference Image Assessment) is $\backslash$ntested on LIVE database and shown to perform statistically better than the $\backslash$nfull-reference quality measure, structural similarity index (SSIM) and is shown $\backslash$nto be comparable to state-of-the-art general purpose NR-IQA algorithms.},
@@ -210,4 +312,16 @@ journal = {IEEE International Conference on Acoustics, Speech, and Signal Proces
 pages = {1238--1242},
 title = {{FROM IMAGE QUALITY TO PATCH QUALITY : AN IMAGE-PATCH MODEL FOR NO-REFERENCE IMAGE QUALITY ASSESSMENT Wen Heng and Tingting Jiang National Engineering Laboratory for Video Technology , Cooperative Medianet Innovation Center , School of Electronics Engineer}},
 year = {2017}
+}
+@article{Simonyan2014,
+abstract = {In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. Our main contribution is a thorough evaluation of networks of increasing depth using an architecture with very small (3x3) convolution filters, which shows that a significant improvement on the prior-art configurations can be achieved by pushing the depth to 16-19 weight layers. These findings were the basis of our ImageNet Challenge 2014 submission, where our team secured the first and the second places in the localisation and classification tracks respectively. We also show that our representations generalise well to other datasets, where they achieve state-of-the-art results. We have made our two best-performing ConvNet models publicly available to facilitate further research on the use of deep visual representations in computer vision.},
+archivePrefix = {arXiv},
+arxivId = {1409.1556},
+author = {Simonyan, Karen and Zisserman, Andrew},
+eprint = {1409.1556},
+file = {:home/lego1st/Documents/School/DIPQA/ref/1409.1556.pdf:pdf},
+pages = {1--14},
+title = {{Very Deep Convolutional Networks for Large-Scale Image Recognition}},
+url = {http://arxiv.org/abs/1409.1556},
+year = {2014}
 }

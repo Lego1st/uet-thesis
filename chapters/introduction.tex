@@ -38,17 +38,34 @@ The patch-based learning methods requires the \enquote*{ground truth} of patch q
 To deal with this problem, existing works usually assign the image quality score to all patchesin this image as their \enquote*{ground truth}, e.g. CNN-IQA \cite{Kang2014}. 
 This approach might introduce much noise in patches labels because in some distortion types the quality of patches in oneimage varies much and the patches quality score can’t besimply assigned as the image quality core. 
 
-Based on all these observations, this project promotes IQA in the new challenges of fine-grained quality assessment task by constructing a large-scale Image-Patch Quality Assessment database with fine-grained distortion differences. I also analyze 7 state-of-the-art IQA algorithms on the proposed database and show that there is still a large room to improve the IQA in the prediction of the fine-grained quality preference. Finally, I propose an FR Image-Patch model to help estimate the \enquote*{ground truth} quality of patches based on a state-of-the-art CNN architecture.   
+Based on all these observations, this project promotes IQA in the new challenges of fine-grained quality assessment task by constructing a large-scale Image-Patch Quality Assessment database with fine-grained distortion differences. 
+We also analyze 7 state-of-the-art IQA algorithms on the proposed database and show that there is still a large room to improve the IQA in the prediction of the fine-grained quality preference. 
+Finally, we propose an FR Image-Patch model to help estimate the \enquote*{ground truth} quality of patches based on a state-of-the-art CNN architecture.   
    
-\begin{figure}[h!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{charts/writing-thesis.png}
   \caption{Caption of this graph.}
   \label{fig:writing-thesis}
 \end{figure}
 
+citing to the graph above \ref{fig:writing-thesis}.
+
 \section{Contributions}
 
+This thesis provides the following contributions:
+
+1. \textbf{Image-Patch Quality Assessment dataset}
+
+To our knowledge, this dataset is the first one constructing to provide benchmark for compressed image patch quality assessment, and also benefit for perceptual-based image compression. 
+The existing databases with coarse-grained quality are inefficient to evaluate IQA algorithms especially patch-based methods on images with fine-grained quality differences. 
+In perceptual-based image compression problem, for each coding block there are many coding modes to select a according their rate-distortion costs. Therefore, the proposed dataset can help researchers in image compression community to select the best IQA method to do the perceptual based image optimization. 7 well-know IQA algorithms are evaluated and analyzed on the proposed database to reveal some limitations of the existing algorithms.
+
+2. \textbf{Deep Image-Patch Neural Network Design}
+
+We also investigate different FR methods to model the relationship between the image patch and patch quality score. 
+After multiple of experiments, Deep Image-Patch Quality Assessment (DIPQA) is proposed to address the problem in and end-to-end optimization. 
+We adapt the concept of Siamese networks know from classification task \cite{BROMLEY2004,Chopra2005} that allow for a join regression of the features extracted from the reference and distorted patch using a deep convolution neural network. 
 
 \section{Thesis Outline}
 
-Citing to the article \cite{Baroni1983} and citing to the graph above \ref{fig:writing-thesis}.
+The rest of this thesis is organized as follows. After this introduction, we present the literature review in Chapter 2 in which we introduce the fields of image quality assessment and deep learning.

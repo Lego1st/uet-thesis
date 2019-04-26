@@ -78,9 +78,9 @@
 	%\null\vfil
 	%\vskip 60\p@
 	\begin{center}{
-		\fz{13}\setstretch{1.3}\textbf{ NAMED ENTITY RECOGNITION FOR VIETNAMESE} \\ \textbf{WITH DEEP LEARNING}\par
-		\fz{12}\textbf{ Nguyễn Đức Nam }\par
-		\fz{12}\textit{K58CA - Khoa học máy tính}
+		\fz{13}\setstretch{1.3}\textbf{MODELING HUMAN VISUAL SYSTEM IN PATCH-BASE IMAGE QUALITY ASSESSMENT } \\ \textbf{USING DEEP LEARNING}\par
+		\fz{12}\textbf{ Nguyễn Trung Nghĩa }\par
+		\fz{12}\textit{K60CA - Khoa học máy tính}
 	}\end{center}
 	%\vskip 60\p@
 	{\normalsize \textbf{Tóm tắt Khóa luận tốt nghiệp:} #1}
@@ -159,12 +159,17 @@
 \setcounter{dbltopnumber}{9}
 \usepackage{graphicx}
 \usepackage{epstopdf}
-\usepackage[scriptsize]{subfigure}
+%\usepackage[scriptsize]{subfigure}
 \usepackage{booktabs}
 \usepackage{rotating}
 \usepackage{listings}
 \usepackage{lstpatch}
 \usepackage{dirtytalk}
+\usepackage{fancybox}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+%\usetikzlibrary{shapes,arrows}
 \lstset{captionpos=b,
         frame=tb,
         basicstyle=\scriptsize\ttfamily,
@@ -215,6 +220,7 @@
   \hypersetup{pdfkeywords=\keywordnames}
   \thispagestyle{empty}
   \begin{titlepage}
+    %\thisfancypage{%\setlength{\fboxsep}{1pt}\doublebox}{}
     \let\footnotesize\small
     \let\footnoterule\relax
     \let \footnote \thanks
@@ -243,9 +249,15 @@
       {\bf \LOCNAME \ - \@date \par}
       \bigskip      
     \end{center}
+    \begin{tikzpicture}[remember picture, overlay]
+      \draw[line width = 3pt] ($(current page.north west) + (2.0in,0.0in)$) rectangle ($(current page.south east) + (0.5in,2.0in)$);
+      \draw[line width = 0.5pt] ($(current page.north west) + (2.05in,-0.05in)$) rectangle ($(current page.south east) + (0.45in,2.05in)$);
+    \end{tikzpicture}
     \par
+
     \@thanks
-    \vfil\null        
+    \vfil\null      
+
   \end{titlepage}
   \newpage
   \setcounter{footnote}{0}%
@@ -257,6 +269,7 @@
   \hypersetup{pdfkeywords=\keywordnames}
   \thispagestyle{empty}
   \begin{titlepage}
+    %\thisfancypage{%\setlength{\fboxsep}{1pt}\doublebox}{}
     \let\footnotesize\small
     \let\footnoterule\relax
     \let \footnote \thanks
@@ -300,6 +313,10 @@
       {\bf \LOCNAME \ - \@date \par}
       \bigskip      
     \end{center}
+    \begin{tikzpicture}[remember picture, overlay]
+      \draw[line width = 3pt] ($(current page.north west) + (2.0in,0.0in)$) rectangle ($(current page.south east) + (0.5in,2.0in)$);
+      \draw[line width = 0.5pt] ($(current page.north west) + (2.05in,-0.05in)$) rectangle ($(current page.south east) + (0.45in,2.05in)$);
+      \end{tikzpicture}
     \par
     \@thanks
     \vfil\null
@@ -327,7 +344,7 @@
     % \setlength{\parskip}{0pt}
     % {\normalsize \UNIVNAME \par}
     % \bigskip
-    	\fz{13}\setstretch{1.3}\textbf{ NAMED ENTITY RECOGNITION FOR VIETNAMESE} \\ \textbf{WITH DEEP LEARNING}\par
+    	\fz{13}\setstretch{1.3}\textbf{MODELING HUMAN VISUAL SYSTEM IN PATCH-BASE IMAGE QUALITY ASSESSMENT} \\ \textbf{USING DEEP LEARNING}\par
     \fz{12}\textbf{Nguyen Trung Nghia} \par	
     \textit{K60CA - Computer Science}
     % \bigskip
@@ -341,6 +358,7 @@
     % {\normalsize by \authornames \par}
     % \bigskip
   \end{center}
+
 }
 {
   \vfil\vfil\vfil\null

@@ -1,0 +1,16 @@
+Thesis.aux
+Thesis.bbl
+Thesis.blg
+Thesis.lof
+Thesis.log
+Thesis.lot
+Thesis.out
+Thesis.pdf
+Thesis.synctex.gz
+Thesis.toc
+dirtytalk.dtx
+dirtytalk.ins
+dirtytalk.log
+texput.log
+**/*.log
+*.pdf

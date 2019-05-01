@@ -37,11 +37,11 @@ three phases are described in the following
   \label{fig:obj-fw}
 \end{figure}
 
-1. The test image is processed pixel by pixel or region by region in accordance with the objective IQA method used to measure the amount of distortion present in it. This phase then outputs the distortion measured in the form of a distortion map containing the image quality local description. This step is equivalent to the feature extraction. 
-
-2. A multidimensional phase is produced in the first phase, but humans perceive image quality as a single global entity rather than the local properties of an image. A spatial pooling strategy is generally used to downsample the multidimensional distortion map to a single quality score in order to produce a global quality assessment. \cite{Wang2006}
-
-3. Since in the first two phases non-linearity, which characterizes perception, is not used, the output may not be sufficiently accurate. Thus, to increase the overall accuracy of the framework, an appropriate strategy could be applied. This requires a set of images along with their subjective quality scores (obtained through subjective testing), and a parametric model whose parameters are learned through the analysis of image model predictions and their actual subjective scores through regression. This learned model is then used to transform predicted scores into better estimates allegedly consistent with human perception. 
+\begin{enumerate}
+  \item The test image is processed pixel by pixel or region by region in accordance with the objective IQA method used to measure the amount of distortion present in it. This phase then outputs the distortion measured in the form of a distortion map containing the image quality local description. This step is equivalent to the feature extraction. 
+  \item A multidimensional phase is produced in the first phase, but humans perceive image quality as a single global entity rather than the local properties of an image. A spatial pooling strategy is generally used to downsample the multidimensional distortion map to a single quality score in order to produce a global quality assessment. \cite{Wang2006}
+  \item Since in the first two phases non-linearity, which characterizes perception, is not used, the output may not be sufficiently accurate. Thus, to increase the overall accuracy of the framework, an appropriate strategy could be applied. This requires a set of images along with their subjective quality scores (obtained through subjective testing), and a parametric model whose parameters are learned through the analysis of image model predictions and their actual subjective scores through regression. This learned model is then used to transform predicted scores into better estimates allegedly consistent with human perception. 
+\end{enumerate}
 
 Objective IQA strategies are classified into three large categories.
 
@@ -98,7 +98,7 @@ Essentially, with regard to the compression of the perceptual image, although di
 
 \subsection{Artificial Neural Network}
 
-Artificial Neural Network (ANN) is not a brand new idea. It was first introduced as a computational model of "nerve net" in the human brain by Warren McCulloch and Walter Pitts[17] in 1943. After that, the concept and architecture of neural networks are further developed by follow-up researchers. Neural networks have long been constrained by hardware performance. The advancement in GPU design and brain science led to a boom in the development of neural networks only in recent decades. 
+Artificial Neural Network (ANN) is not a brand new idea. It was first introduced as a computational model of "nerve net" in the human brain by Warren McCulloch and Walter Pitts \cite{McCulloch1943} in 1943. After that, the concept and architecture of neural networks are further developed by follow-up researchers. Neural networks have long been constrained by hardware performance. The advancement in GPU design and brain science led to a boom in the development of neural networks only in recent decades. 
 
 \begin{figure}[H]
   \includegraphics[width=\linewidth]{figures/ann.jpg}
@@ -112,7 +112,7 @@ A common modern neural networks consist of a large number of nodes called neuron
 
 First, Weight Metric and Bias Metric are initialized with random values (or pre-trained value obtained from other benchmark data). A training of the neural networks is required to adjust those parameters to fit into a particular task.
 
-The most common and popular method of training neural network is back-propagation (BP). The goal of back-propagation is to compute the partial derivative, or gradient, $\frac{\partial E}{\partial w}$ of a loss function E with respect to any weight w in the network. The loss function
+The most common and popular method of training neural network is back-propagation (BP) \cite{Rumelhart1986}. The goal of back-propagation is to compute the partial derivative, or gradient, $\frac{\partial E}{\partial w}$ of a loss function E with respect to any weight w in the network. The loss function
 $E$ calculates the difference between prediction of neural network and its expected output, after one or a batch of sample data go through the network. A loss function is usually defined as:
 
 \begin{equation} \label{eq:lossabs}
@@ -153,7 +153,7 @@ where $E$ is the loss function, $w_{ij}$ is the weight from neuron $i$ to neuron
 
 We can calculate them one by one from the output layer to input layer and use the result in later layers for calculating the former layers. Therefore, calculating partial derivative is actually quite cheap when doing backward.
 
-A neural network with multiple layer structure has proved its power on image recognition. However, it suffers from \enquote{the curse of dimensionality} heavily. It means that the number of parameters in the network goes up quickly when the dimension (resolution) of input image increases. Early neural networks work on low resolution images such as $20 \time 20$ and $32 \time 32$. Early benchmark datasets, MNIST and CIFAR10 for instance, are also collections of small images with $20 \time 20$ and $32 \time 32$ pixels. At that time, neural networks can take care of those images with hundreds or thousands of parameters. When the size of target image rise to around $200 \time 200$, an input layer with 40000 neurons is needed. Assuming the first hidden layer is fully connected and has the same number of neurons as the input layer, which is quite common in practice, at least $40000 \time 40000$ individual parameters is needed in just 2 layers. The mass of parameters not only consumes computing resources, but also causes serious overfitting problems. 
+A neural network with multiple layer structure has proved its power on image recognition \cite{Rowley1998}. However, it suffers from \enquote{the curse of dimensionality} heavily. It means that the number of parameters in the network goes up quickly when the dimension (resolution) of input image increases. Early neural networks work on low resolution images such as $20 \time 20$ and $32 \time 32$. Early benchmark datasets, MNIST \cite{LeCun1998} and CIFAR10 \cite{Krizhevsky2009} for instance, are also collections of small images with $20 \time 20$ and $32 \time 32$ pixels. At that time, neural networks can take care of those images with hundreds or thousands of parameters. When the size of target image rise to around $200 \time 200$, an input layer with 40000 neurons is needed. Assuming the first hidden layer is fully connected and has the same number of neurons as the input layer, which is quite common in practice, at least $40000 \time 40000$ individual parameters is needed in just 2 layers. The mass of parameters not only consumes computing resources, but also causes serious overfitting problems. 
 
 Overfitting means that a statistical model tries to describe each training sample rather than to find out regular patterns among the sample collection. Fig.\ref{fig:overfit} shows a simple case of overfitting. The regression function tends to "remember" the distinguishing features of each sample individually but fails to figure out the trend of all samples. Although it passes every sample point and has 0 loss, it is not generalizable to unseen data. Even a linear function has more prediction power than it. 
 
@@ -212,11 +212,11 @@ f(x) = \tanh(x)
   \label{fig:activation}
 \end{figure}
 
-Fig.\ref{fig:activation} shows the response of 3 methods. The 3 methods share the same idea of inhibiting negative outputs and amplifying/keeping positive outputs of the early layers, which is a simulation of how human brain cells work. Hyperbolic tangent function and sigmoid function are widely used in old models but ReLU function becomes more preferable recently because it is proved to be much computational cheaper without making any significant differences in accuracy
+Fig.\ref{fig:activation} shows the response of 3 methods. The 3 methods share the same idea of inhibiting negative outputs and amplifying/keeping positive outputs of the early layers, which is a simulation of how human brain cells work. Hyperbolic tangent function and sigmoid function are widely used in old models but ReLU function becomes more preferable recently because it is proved to be much computational cheaper without making any significant differences in accuracy \cite{Krizhevsky2012}.
 
 \textbf{Pooling Layers} 
 
-\enquote{Pooling} is a nonlinear down-sampling method widely used in CNNs. Fig.\ref{fig:pool} shows a common max pooling layer with a $2 \times 2$ filter size and a stride of 2. The filter move through the entries with a certain stride, pooling layer maps each block in former layer to a single value. Pooling layer concentrates the information in former layer and provides the later layers a larger \enquote{vision} in the original image. Also, pooling helps reducing the number of parameters in the network and hence has an effect of overfit control. The most popular pooling methods are max pooling and min pooling, where the filter takes the max or min value in each block as the output. Average pooling, which uses the average of all values in the block as output is also commonly used in old days. However, it has given its place to max pooling since the later one is proved to work better in practice.
+\enquote{Pooling} is a nonlinear down-sampling method widely used in CNNs. Fig.\ref{fig:pool} shows a common max pooling layer with a $2 \times 2$ filter size and a stride of 2. The filter move through the entries with a certain stride, pooling layer maps each block in former layer to a single value. Pooling layer concentrates the information in former layer and provides the later layers a larger \enquote{vision} in the original image. Also, pooling helps reducing the number of parameters in the network and hence has an effect of overfit control. The most popular pooling methods are max pooling and min pooling, where the filter takes the max or min value in each block as the output. Average pooling, which uses the average of all values in the block as output is also commonly used in old days. However, it has given its place to max pooling since the later one is proved to work better in practice \cite{Scherer2010}.
 
 \begin{figure}[H]
   \centering

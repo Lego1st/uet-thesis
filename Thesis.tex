@@ -1,0 +1,391 @@
+%% ----------------------------------------------------------------
+%% Thesis.tex -- MAIN FILE (the one that you compile with LaTeX)
+%% ---------------------------------------------------------------- 
+
+% Set up the document
+\documentclass[a4paper, 13pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\graphicspath{Figures/}  % Location of the graphics files (set up for graphics to be in PDF format)
+
+% Include any extra LaTeX packages required
+\usepackage[square, numbers, comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
+%\usepackage[round]{natbib}  % Use the "Natbib" style for the references in the Bibliography
+\usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
+\usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
+\usepackage{tabularx}
+\usepackage{indentfirst}
+\usepackage{float}
+\usepackage{notoccite}
+\usepackage[dvipsnames]{xcolor}
+\hypersetup{allcolors=black, colorlinks=true}  % Colours hyperlinks in blue, but this can be distracting if there are many links.
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{pgfplots}
+\usepackage{multirow}
+\usepackage{microtype}
+\usepackage{pdfpages}
+\usepackage[]{algorithm2e}
+\usepackage{csquotes}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% Include any extra LaTeX packages required
+
+%% ----------------------------------------------------------------
+\begin{document}
+
+\frontmatter      % Begin Roman style (i, ii, iii, iv...) page numbering
+
+% Set up the Title Page
+% \title  {MODELING HUMAN VISUAL SYSTEM IN PATCH-BASE IMAGE QUALITY ASSESSMENT USING DEEP LEARNING}
+% \authors  {\texorpdfstring
+            % {\href{nguyentrungnghia1812@gmail.com}{Nguyen Trung Nghia}}
+            % {Nguyen Trung Nghia}
+            %}
+% \addresses  {\groupname\\\deptname\\\univname}  % Do not change this here, instead these must be set in the "Thesis.cls" file, please look through it instead
+% \date       {\the\year}
+% \subject    {}
+% \keywords   {}
+
+%\maketitle
+
+\begin{titlepage}
+	\begin{center}
+		\bigskip
+		%\setlength{\parskip}{2pt}
+		{\mynorm\bf {\VNUNAME}\par}
+		{\mynorm\bf {\UNIVNAME}\par}      
+		\bigskip \bigskip \bigskip \bigskip
+		\centerline{\includegraphics[width=3cm]{figures/coltech.png}}
+		\bigskip \bigskip
+		{\mybig \bf Nguyen Trung Nghia \par}
+		\vfill
+		{\mylarge \bf MODELING HUMAN VISUAL SYSTEM \par IN PATCH-BASE IMAGE QUALITY ASSESSMENT \par USING DEEP LEARNING \par}
+		\vfill \vfill
+		\bigskip \bigskip      
+		{\mybig \bf Major: \maj \par}      
+		\bigskip \bigskip \bigskip   \bigskip
+		{\bf \LOCNAME \ - \the\year \par}   
+	\end{center}
+	\begin{tikzpicture}[remember picture, overlay]
+	\draw[line width = 3pt] ($(current page.north west) + (2.0in,0.0in)$) rectangle ($(current page.south east) + (0.5in,2.0in)$);
+	\draw[line width = 0.5pt] ($(current page.north west) + (2.05in,-0.05in)$) rectangle ($(current page.south east) + (0.45in,2.05in)$);
+	\end{tikzpicture}
+\end{titlepage}
+\newpage
+\begin{titlepage}
+	\begin{center}
+		{\mynorm\bf {\VNUNAME}\par}
+		{\mynorm\bf {\UNIVNAME}\par}      
+		\bigskip \bigskip \bigskip \bigskip \bigskip \bigskip
+		{\mybig \bf Nguyen Trung Nghia \par}
+		\bigskip \bigskip \bigskip \bigskip \bigskip \bigskip
+		{\mylarge \bf MODELING HUMAN VISUAL SYSTEM \par IN PATCH-BASE IMAGE QUALITY ASSESSMENT \par USING DEEP LEARNING \par}
+		\bigskip \bigskip \bigskip \bigskip \bigskip \bigskip
+	\end{center}
+	{\mybig \bf Major: \maj \par}      
+	\bigskip
+	\bigskip
+	\bigskip        
+	{\mybig \bf Supervisor: \supname \par}
+	{\mybig \bf Co-Supervisor: \cosupname \par}    
+	\vfill
+	\begin{center}
+		{\bf \LOCNAME \ - \the\year \par}   
+	\end{center}
+	\begin{tikzpicture}[remember picture, overlay]
+	\draw[line width = 3pt] ($(current page.north west) + (2.0in,0.0in)$) rectangle ($(current page.south east) + (0.5in,2.0in)$);
+	\draw[line width = 0.5pt] ($(current page.north west) + (2.05in,-0.05in)$) rectangle ($(current page.south east) + (0.45in,2.05in)$);
+	\end{tikzpicture}
+\end{titlepage}
+
+%% ----------------------------------------------------------------
+
+\setstretch{1.3}  % It is better to have smaller font and larger line spacing than the other way round
+
+% Define the page headers using the FancyHdr package and set up for one-sided printing
+\fancyhead{}  % Clears all page headers and footers
+\rhead{}  % Sets the right side header to show the page number
+\lhead{}  % Clears the left side page header
+\fancyfoot[C]{\thepage}
+
+\pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
+
+%% ----------------------------------------------------------------
+% Declaration Page required for the Thesis, your institution may give you a different text to place here
+\Declaration{
+
+% \addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+
+\emph{
+\say{I hereby declare that the work contained in this thesis is of my own and has not been previously submitted for a degree or diploma at this or any other higher education institution. To the best of my knowledge and belief, the thesis contains no materials previously published or written by another person except where due reference or acknowledgement is made.}
+}
+\bigskip
+\bigskip
+\bigskip
+
+Signature .............................................................................
+
+% -------------------------------- Begin comment
+\iffalse
+I, AUTHOR NAME, declare that this thesis titled, `THESIS TITLE' and the work presented in it are my own. I confirm that:
+
+\begin{itemize} 
+\item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at this University.
+ 
+\item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
+ 
+\item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
+ 
+\item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
+ 
+\item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
+ 
+\item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.
+\\
+\end{itemize}
+ 
+ 
+Signed:\\
+\rule[1em]{25em}{0.5pt}  % This prints a line for the signature
+ 
+Date:\\
+\rule[1em]{25em}{0.5pt}  % This prints a line to write the date
+}
+\fi
+% ----------------------------- End comment
+
+\clearpage  % Declaration ended, now start a new page
+
+%% ----------------------------------------------------------------
+% Approval
+\Approval{
+
+%\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+
+\emph{
+\say{I hereby approve that the thesis in its current form is ready for committee examination as a requirement for the Bachelor of Computer Science degree at the University of Engineering and Technology.}
+}
+\bigskip
+\bigskip
+\bigskip
+
+Signature .............................................................................
+}
+
+\clearpage  % Declaration ended, now start a new page
+
+%% ----------------------------------------------------------------
+\iffalse
+% The "Funny Quote Page"
+\pagestyle{empty}  % No headers or footers for the following pages
+
+\null\vfill
+% Now comes the "Funny Quote", written in italics
+\textit{``Write a funny quote here.''}
+
+\begin{flushright}
+If the quote is taken from someone, their name goes here
+\end{flushright}
+
+\vfill\vfill\vfill\vfill\vfill\vfill\null
+\clearpage  % Funny Quote page ended, start a new page
+\fi
+%% ----------------------------------------------------------------
+
+% Acknoledgement
+\setstretch{1.3}  % Reset the line-spacing to 1.3 for body text (if it has changed)
+
+% The Acknowledgements page, for thanking everyone
+\acknowledgements{
+	\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+	
+	
+  First and foremost, I would like to express my sincere thanks to my supervisor Ph.D. Le Thanh Ha and M.Sc. Pham Thanh Tung for their support and guidance throughout this research work.
+  
+  I greatly appreciated the Department of Computational Science and Engineering, and HMI Lab both at the VNU UET for the generous support.
+  
+  I would also like to thanks my teachers and friends for their support throughout my time in
+  University of Engineering and Technology, Vietnam National University, Hanoi
+  
+  This thesis was partly supported by the University of Fire Fighting and Prevention under the subjective image quality experiment and InfoRe Technology for providing working environment. 
+	
+	
+}
+
+\clearpage  % End of the Acknowledgements
+%% ----------------------------------------------------------------
+
+\myabstract{
+  \addtocontents{toc}{\vspace{1em}}
+  
+  As humans are the ultimate receivers of the majority of visual signals being processed, the most accurate way of assessing image quality is to ask humans for their opinions of an image’s quality, known as the subjective image quality assessment (IQA). The subjective image quality scores gathered from all subjects are processed to be the mean opinion score (MOS), which is regarded as the ground truth of image quality. Conventionally, a number of full-reference image quality assessment (FR-IQA) methods adopted various computational models of the human visual system (HVS) from psychological vision science research.
+  
+  The image compression is one of the most
+  prominent applications that require IQA metrics to be highly
+  correlated with human vision. To explore IQA algorithms that are
+  more consistent with human vision, several calibrated databases
+  have been constructed. However, the distorted images in the existing databases are usually generated by corrupting the pristine
+  images with various distortions in coarse levels, such that the
+  IQA algorithms validated on them may be inefficient to optimize
+  the image compression with fine-grained quality
+  differences. In addition, HVS is differently sensitive to features of image patch, the \enquote*{ground truth} quality of patch is essential for training patch-based methods, but in practice it’s easy to obtain the ground truth quality of images
+  rather than patches. 
+  
+  So an experimental quality assessment to approach database for image patch has been developed. We propose Full-reference Deep Image-Patch Quality Assessment (DIPQA), a novel image-patch quality assessment that used deep neural network to estimate the \enquote*{ground truth} for patches with the developed database.
+  
+  Seven well-know IQA algorithms are evaluated and analyzed on the proposed database to show that there is still large room for improvement regarding fine-grained patch-based method. In the following experiment, we train and evaluate the proposed DIPQA on the proposed database and show competitive performance to other FR methods. DIPQA is expected to improve the performance of many applications that require patch's \enquote{ground truth} especially in image compression. 
+}
+% The Abstract Page
+% \addtotoc{Abstract}  % Add the "Abstract" page entry to the Contents
+%\abstract{
+%\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+%\textbf{Abstract:}
+%
+%  
+%}
+%\thispagestyle{empty}
+%\clearpage  % Abstract ended, start a new page
+%% ----------------------------------------------------------------
+
+%\textsc{\Vabstract {
+%  Con người là nguồn thu nhận tín hiệu hữu hình khá chính, do đó cách chính xác nhất để đánh giá chất lượng của hình ảnh là nhờ con người chấm điểm, điểm này được gọi là điểm đánh giá chủ quan chất lượng (IQA). Điểm đánh giá chủ quan được thu thập và tính trung bình của nhiều người (MOS) và được gọi là điểm chất lượng ảnh thực sự. Để đáp ứng nhu cầu mô phỏng được hệ thống trực quan của con người (HVS) trong các nghiên cứu về tâm lý thị giác, một loạt các phương pháp đánh giá chất lượng ảnh dựa vào ảnh tham chiếu (FR-IQA) đã được phát triển.
+%
+%  Nén ảnh là một trong những ứng dụng phổ biến và yêu cầu điểm IQA phải có tương quan lớn với thị giác người. Một số cơ sở dữ liệu đã được xây dựng nhằm phục vụ nghiên cứu những thuật toán IQA phù hợp với thị giác người. Tuy nhiên, những ảnh nhiễu trong các bộ dữ liệu hiện tại có đa dạng loại nhiều nhưng chỉ áp dụng nhiều ở dạng hạt thô (coarse level), điều này khiến cho các thuật toán IQA không thực sự hiệu quả trong việc tối ưu nén với các dạng nhiễu hạt mịn (fine-grained). Thêm nữa, HVS khá nhạy cảm với các mảng vá nhỏ (image patch), điểm thực sự cho các mảnh này cũng rất cần thiết cho các phương pháp tiếp cận vá (patch-based), tuy vậy thì hiện chưa có dữ liệu cho các mảnh vá này.
+%  
+%  Một thí nghiệm đánh giá chất lượng ảnh cho các mảnh vá nhằm xây dựng một bộ dữ liệu đã được thực hiện. Sau đó chúng tôi đề xuất một mô hình học sâu sử dụng ảnh tham chiếu Deep Image-Patch Quality Assessmen (DIPQA), mô hình sử dụng mạng nơ ron học sâu để dự đoán điểm thực sự cho các mảnh vá với dữ liệu đã được tạo ra trong dự án này.
+%  
+%  Bảy thuật toán IQA đã được đánh giá và phân tích trên tập dữ liệu đề xuất, cho thấy rằng vẫn có nhiều thứ để cải thiện cho các phương pháp đánh giá mảnh vá hạt nhiễu. Sau đó, chúng tôi huấn luyện và đánh giá mô hình đề xuất DIPQA trên tập dữ liệu, mô hình đem lại kết quả tốt hơn hẳn so với các phương pháp tham chiếu được sử dụng. DIPQA được hi vọng sẽ có thể nâng hiệu năng của các ứng dụng có sử dụng điểm mảnh vá, đặc biệt là trong nén ảnh.
+%	
+%}
+%\thispagestyle{empty}
+%\clearpage}
+
+
+%% -----------------------------------------------------------
+
+\pagestyle{fancy}  %The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
+
+
+%% ----------------------------------------------------------------
+\lhead{\emph{Contents}}  % Set the left side page header to "Contents"
+\tableofcontents  % Write out the Table of Contents
+
+%% ----------------------------------------------------------------
+\lhead{\emph{List of Figures}}  % Set the left side page header to "List if Figures"
+\listoffigures  % Write out the List of Figures
+
+%% ----------------------------------------------------------------
+\lhead{\emph{List of Tables}}  % Set the left side page header to "List of Tables"
+\listoftables  % Write out the List of Tables
+
+%% ----------------------------------------------------------------
+\setstretch{1.5}  % Set the line spacing to 1.5, this makes the following tables easier to read
+\clearpage  % Start a new page
+
+
+
+\lhead{\emph{Abbreviations}}  % Set the left side page header to "Abbreviations"
+\listofsymbols{ll}  % Include a list of Abbreviations (a table of two columns)
+{
+% \textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
+%\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere \\
+IQA & Image Quality Assessment \\
+CNN & Convolutional Neural Network \\
+DIPQA & Deep Image-Patch Quality Assessment \\
+DMOS & Differential Mean Opinion Score \\
+FR & Full-reference \\
+MOS & Mean Opinion Score \\
+NR & No-reference \\
+RR & Reduced-reference \\
+}
+
+%% ----------------------------------------------------------------
+\clearpage  % Start a new page
+
+%% -------------- COMMENT OUT
+\iffalse 
+\lhead{\emph{Physical Constants}}  % Set the left side page header to "Physical Constants"
+\listofconstants{lrcl}  % Include a list of Physical Constants (a four column table)
+{
+% Constant Name & Symbol & = & Constant Value (with units) \\
+Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$ (exact)\\
+
+}
+
+%% ----------------------------------------------------------------
+\clearpage  %Start a new page
+\lhead{\emph{Symbols}}  % Set the left side page header to "Symbols"
+\listofnomenclature{lll}  % Include a list of Symbols (a three column table)
+{
+% symbol & name & unit \\
+$a$ & distance & m \\
+$P$ & power & W (Js$^{-1}$) \\
+& & \\ % Gap to separate the Roman symbols from the Greek
+$\omega$ & angular frequency & rads$^{-1}$ \\
+}
+%% ----------------------------------------------------------------
+% End of the pre-able, contents and lists of things
+% Begin the Dedication page
+
+\setstretch{1.3}  % Return the line spacing back to 1.3
+
+\pagestyle{empty}  % Page style needs to be empty for this page
+\dedicatory{For/Dedicated to/To my\ldots}
+
+
+\fi
+%% ------------END COMMENT--------------------------------------
+
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+
+
+%% ----------------------------------------------------------------
+\mainmatter	  % Begin normal, numeric (1,2,3...) page numbering
+\pagestyle{fancy}  % Return the page headers back to the "fancy" style
+\fancyhf{}
+\fancyhead[RE,LO]{\leftmark}
+\fancyfoot[C]{\thepage}
+\setlength{\parindent}{2em}
+% Include the chapters of the thesis, as separate files
+% Just uncomment the lines as you write the chapters
+
+% \input{Chapters/ChapterTest} % Introduction
+
+
+\input{Chapters/Introduction} % Introduction
+
+\input{Chapters/Background}
+
+\input{Chapters/Method}
+
+\input{Chapters/Evaluation} 
+
+\input{Chapters/Conclusion}
+
+%% ----------------------------------------------------------------
+% Now begin the Appendices, including them as separate files
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+
+% \input{Appendices/AppendixA}	% Appendix Title
+
+% \input{Appendices/AppendixB} % Appendix Title
+
+% \input{Appendices/AppendixC} % Appendix Title
+
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+\backmatter
+
+%% ----------------------------------------------------------------
+\label{Bibliography}
+\lhead{\emph{\mybibname}}  % Change the left side page header to "Bibliography"
+\bibliographystyle{IEEEtran}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\renewcommand{\bibname}{\mybibname}
+\bibliography{References/references}
+
+
+\end{document}  % The End
+%% ----------------------------------------------------------------

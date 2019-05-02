@@ -78,14 +78,14 @@ It is more useful to have algorithms, regardless of the types of distortion, tha
   \includegraphics[width=\linewidth]{figures/jpeg.png}
   \captionsetup{justification=raggedright}
   \caption{Examples of quantization table and the corresponding compressed
-JPEG images.} 
+    JPEG images.} 
   \label{fig:jpeg}
   \subcaption*{(a) JPEG default quantization table at quality factor equal to
-50; 
+    50; 
     \newline(b) Optimized quantization table with the optimization goal of MS-SSIM; \newline(c) JPEG image using default quantization table at QF = 10, 0.234 bbp,
-PSNR = 30.45, SSIM = 0.819, MS-SSIM = 0.946; \newline(d) JPEG image using
-MS-SSIM optimized quantization table, 0.226 bpp, PSNR = 30.49, SSIM = 0.818, MS-SSIM = 0.953}
-
+    PSNR = 30.45, SSIM = 0.819, MS-SSIM = 0.946; \newline(d) JPEG image using
+    MS-SSIM optimized quantization table, 0.226 bpp, PSNR = 30.49, SSIM = 0.818, MS-SSIM = 0.953}
+  
 \end{figure}
 
 While the bitstream has been normalized by image coding standards, different coding parameters or modes determined by different IQA metrics will obviously result in distinct compression performance. In JPEG, the custom quantization table is one of the optional coding parameters, and the default table is empirically determined based on human perception \cite{Wallace1992}. For example, in Fig.\ref{fig:jpeg}(a), which is scaled to generate quantization tables for other quality factors, the quality factor (QF) quantization table of the luminance component equal to 50 is shown. In addition to the standard JPEG quantization table, the open source and well-optimized JPEG codec, \emph{libjpeg}, has adopted another 8 quantization tables, one of which is an optimized MS-SSIM-based quantization table as shown in Fig.\ref{fig:jpeg}(b). 
@@ -112,7 +112,7 @@ A common modern neural networks consist of a large number of nodes called neuron
 
 First, Weight Metric and Bias Metric are initialized with random values (or pre-trained value obtained from other benchmark data). A training of the neural networks is required to adjust those parameters to fit into a particular task.
 
-The most common and popular method of training neural network is back-propagation (BP) \cite{Rumelhart1986}. The goal of back-propagation is to compute the partial derivative, or gradient, $\frac{\partial E}{\partial w}$ of a loss function E with respect to any weight w in the network. The loss function
+Back-propagation (BP) \cite{Rumelhart1986} is known as the most common and popular method of training neural network. The objective of back-propagation is to compute the partial derivative, or gradient, $\frac{\partial E}{\partial w}$ of a loss function E with respect to any weight w in the network. The loss function
 $E$ calculates the difference between prediction of neural network and its expected output, after one or a batch of sample data go through the network. A loss function is usually defined as:
 
 \begin{equation} \label{eq:lossabs}
@@ -125,37 +125,35 @@ or
 E=\frac{1}{N}\sum_{i=1}^{N}(f(x_i)-y_i)^{2} 
 \end{equation}
 
-where $f(x)$ is the equivalent function fo the neural network. Equation \ref{eq:lossabs} is called $L1$ loss while equation \ref{eq:losssqr} is called $L2$ loss. In practice, $L2$ loss is the most popular one because it is more sensitive to examples that far away from expected output. Thus
-the trained neural network is hopefully more general. On the other hand, $L1$ loss is not
-that sensitive to a minority of output that far from the expectation and takes care of the
-average error of the majority. It is especially useful when training data is not very carefully
-collected and may contain incorrect samples.
+where $f(x)$ is the equivalent function fo the neural network. Equation \ref{eq:lossabs} is called $L1$ loss while equation \ref{eq:losssqr} is called $L2$ loss. In practice, $L2$ loss is the most popular one due to the fact that it is more sensitive to examples that are far away from expected output. 
+Thus the trained neural network is hopefully more general. 
+On the other hand, $L1$ loss is not that sensitive to a minority of output that is far from the expectation and takes care of the average error of the majority. 
+It is particularly useful if training data is not collected very carefully and may contain incorrect samples.
 
 Thus the progress of training by BP can be presented as:
 
 \begin{enumerate}
-  \item Put one batch of training data through the neural network
-  \item Calculate the loss between output and ground truth
-  \item Go backward the network and calculate the partial derivative, or gradient, $\frac{\partial E}{\partial w}$
-of loss function $E$ with respect to each weight $w$ in the network
+  \item Feed forward one batch of training data through the neural network
+  \item Calculate the loss between ground truth and output
+  \item Back-propagate the network and calculate the partial derivative, or gradient, $\frac{\partial E}{\partial w}$
+  of loss function $E$ with respect to each weight $w$ in the network
   \item Update the weights in the network according to loss, gradient and learning rate (LR)
-  \item Repeat step 1 to 4 until training ends, usually when a certain number of cycles set
-by researcher is reached or the loss value is smaller than a threshold
+  \item Repeat step 1 to 4 until training is complete, usually when the number of cycles set by researcher is reached or the loss value is lower than a threshold
 \end{enumerate}
 
 This method is called \enquote{back-propagation} partly because the partial derivative is calculated using chain rule:
 
 \begin{equation}
-\frac{\partial E}{\partial w_{ij}} = \frac{\partial E}{\partial o_j} \frac{\partial o_j}{\partial net_j} \frac{\partial net_j}{\partial w_{ij}}
+\frac{\partial E}{\partial w_{ij}} = \frac{\partial E}{\partial o_j} \frac{\partial o_j}{\partial wsum_j} \frac{\partial wsum_j}{\partial w_{ij}}
 \end{equation}
 
-where $E$ is the loss function, $w_{ij}$ is the weight from neuron $i$ to neuron $j$, $o_j$ is the output of the neuron $j$, $net_j$ is the weighted sum of outputs to neuron $j$ from the previous layer.
+where $E$ is the loss function, $w_{ij}$ is the weight from neuron $i$ to neuron $j$, $o_j$ is the output of the neuron $j$, $wsum_j$ is the weighted sum of outputs to neuron $j$ from the previous layer.
 
-We can calculate them one by one from the output layer to input layer and use the result in later layers for calculating the former layers. Therefore, calculating partial derivative is actually quite cheap when doing backward.
+From the output layer to the input layer, we can calculate them one by one and use the results in later layers to calculate the former layers. Therefore, when doing backwards, calculating partial derivatives is actually quite cheap.
 
 A neural network with multiple layer structure has proved its power on image recognition \cite{Rowley1998}. However, it suffers from \enquote{the curse of dimensionality} heavily. It means that the number of parameters in the network goes up quickly when the dimension (resolution) of input image increases. Early neural networks work on low resolution images such as $20 \time 20$ and $32 \time 32$. Early benchmark datasets, MNIST \cite{LeCun1998} and CIFAR10 \cite{Krizhevsky2009} for instance, are also collections of small images with $20 \time 20$ and $32 \time 32$ pixels. At that time, neural networks can take care of those images with hundreds or thousands of parameters. When the size of target image rise to around $200 \time 200$, an input layer with 40000 neurons is needed. Assuming the first hidden layer is fully connected and has the same number of neurons as the input layer, which is quite common in practice, at least $40000 \time 40000$ individual parameters is needed in just 2 layers. The mass of parameters not only consumes computing resources, but also causes serious overfitting problems. 
 
-Overfitting means that a statistical model tries to describe each training sample rather than to find out regular patterns among the sample collection. Fig.\ref{fig:overfit} shows a simple case of overfitting. The regression function tends to "remember" the distinguishing features of each sample individually but fails to figure out the trend of all samples. Although it passes every sample point and has 0 loss, it is not generalizable to unseen data. Even a linear function has more prediction power than it. 
+Overfitting means that a statistical model tries to describe each sample of training instead of finding regular patterns in the collection of samples. Fig.\ref{fig:overfit} shows a simple case of overfitting. The regression function tends to "remember" each sample's distinctive characteristics individually but fails to determine the trend of all samples. Although it passes every sample point with 0 loss, it does not generalize the unseen data. Even a linear function can predict better than it. 
 
 \begin{figure}[H]
   \centering
@@ -164,11 +162,11 @@ Overfitting means that a statistical model tries to describe each training sampl
   \label{fig:overfit}
 \end{figure}
 
-Overfitting usually happens when neural network has too many parameters compared to the number of training samples, which enables the network easily remembering all samples. To limit the number of parameters in neural network, researchers find a way to reuse parameters in different parts of the image, which is a Convolutional Neural Network (CNN)
+Overfitting usually occurs when there are too many parameters in the neural network compared to the number of training samples, allowing the network to easily remember all samples. To limit the number of parameters in neural network, researchers find a way to reuse parameters in various parts of the image, which is a Convolutional Neural Network (CNN).
 
 \subsection{Convolutional Neural Network}
 
-A CNN is one type of neural network that specially designed for image recognizing. The architecture of CNN comes from the organization of animal visual cortex. Fig.\ref{fig:cnn} shows the basic structure of a convolutional neural network. $X_{i,j}$ represents the pixels in the input image. A is the kernel of the first convolutional layer and is repeatedly used on each block of four pixels. The neurons on the second layer then takes the outputs of the first layer as their inputs and use the same kernel B. Fig.\ref{fig:kernel} shows the mapping between 2 layers. One blocked in the front layer, which is a  $m \times n \times d_1$ tensor ($m = n$ in most cases), is multiplied by a $m \times n \times d_1 \times d_2$ kernel and mapped to a $1 \times 1 \times d_2$ block in the next layer. The $m \times n \times d_1$ block in the front layer is called receptive field, which means all neurons in such block is connected to one neuron in the next layer, and their information is gathered together by a neuron in next layer.
+CNN is a type of neural network designed specifically for image recognition. The architecture of CNN inspires from the organization of human visual cortex. Fig.\ref{fig:cnn} shows the basic structure of a convolutional neural network. $X_{i,j}$ represents the pixels in the input image. $A$ is the kernel of the first convolutional layer and is repeatedly used on each block of four pixels. The neurons on the second layer then takes the outputs of the first layer as their inputs and use the same kernel $B$. Fig.\ref{fig:kernel} shows the mapping between 2 layers. One blocked in the front layer, which is a  $m \times n \times d_1$ tensor ($m = n$ in most cases), is multiplied by a $m \times n \times d_1 \times d_2$ kernel and mapped to a $1 \times 1 \times d_2$ block in the next layer. The $m \times n \times d_1$ block in the front layer is called receptive field, which means all neurons in such block is connected to one neuron in the next layer, and their information is gathered together by a neuron in next layer.
 
 \begin{figure}[H]
   \centering
